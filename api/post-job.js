@@ -45,7 +45,8 @@ export default async function handler(req, res) {
     // --- Send verification email ---
     try {
       const emailResult = await resend.emails.send({
-        from: "jobs@resend.dev", // MUST be verified in your Resend account
+       // from: "jobs@resend.dev", // MUST be verified in your Resend account
+        from: "noreply@civilbench.com", 
         to: email,
         subject: "Verify your job posting",
         html: `

@@ -19,41 +19,92 @@
     }
 
     /* ---------- NAV ---------- */
-    nav {
-      background: #fff;
-      border-bottom: 1px solid #e0e0e0;
-      padding: 10px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+   <style>
+/* NAVBAR */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: #0b132b;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
 
-    nav h1 {
-      font-size: 0.95rem; /* COOL minimal size */
-      font-weight: 600;
-    }
+/* LEFT */
+.brand {
+  font-size: 1.1rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 14px;
-    }
+/* CENTER LINKS */
+.nav-center {
+  display: flex;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
 
-    nav a, nav button {
-      text-decoration: none;
-      color: #333;
-      font-size: 0.9rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
+.nav-link {
+  text-decoration: none;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
 
-    nav button.post-btn {
-      padding: 5px 10px;
-      border: 1px solid #333;
-      border-radius: 4px;
-    }
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+/* ACTIVE PAGE */
+.nav-link.active {
+  background: #2563eb;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* POST JOB BUTTON */
+.post-job-btn {
+  background: #22c55e;
+  border: none;
+  color: #000;
+  font-size: 0.85rem;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.post-job-btn:hover {
+  background: #16a34a;
+}
+
+/* MOBILE FIX */
+@media (max-width: 640px) {
+  .navbar {
+    gap: 6px;
+  }
+
+  .brand {
+    font-size: 1rem;
+  }
+
+  .nav-link {
+    font-size: 0.8rem;
+    padding: 5px 6px;
+  }
+
+  .post-job-btn {
+    font-size: 0.8rem;
+    padding: 5px 8px;
+  }
+}
+</style>
 
     /* ---------- CONTAINER ---------- */
     .container {
@@ -539,6 +590,7 @@ document.addEventListener("DOMContentLoaded", loadJobs);
 
 </body>
 </html>
+
 
 
 

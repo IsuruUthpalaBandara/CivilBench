@@ -149,15 +149,24 @@
 
 <body>
 
-<nav>
-  <h1>Civil Bench</h1>
-  <ul>
-    <li><a onclick="showPage('home')">Home</a></li>
-    <li><a onclick="showPage('about')">About</a></li>
-    <li><a onclick="showPage('privacy')">Privacy</a></li>
-    <li><button class="post-btn" onclick="showPage('post')">Post Job</button></li>
-  </ul>
+<nav class="navbar">
+  <div class="nav-left">
+    <span class="brand">CivilBench</span>
+  </div>
+
+  <div class="nav-center">
+    <a href="#home" class="nav-link" data-page="home">Home</a>
+    <a href="#about" class="nav-link" data-page="about">About</a>
+    <a href="#privacy" class="nav-link" data-page="privacy">Privacy</a>
+  </div>
+
+  <div class="nav-right">
+    <button class="post-job-btn" onclick="showPage('post')">
+      Post Job
+    </button>
+  </div>
 </nav>
+
 
 <div class="container">
 
@@ -530,6 +539,7 @@ document.addEventListener("DOMContentLoaded", loadJobs);
 
 </body>
 </html>
+
 
 
 

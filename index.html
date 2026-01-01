@@ -587,9 +587,34 @@ async function loadJobs() {
 
 document.addEventListener("DOMContentLoaded", loadJobs);
 </script>
+<script>
+function setActiveNav(page) {
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.classList.remove('active');
+    if (link.dataset.page === page) {
+      link.classList.add('active');
+    }
+  });
+}
+
+/* Hook into your existing page switching */
+const originalShowPage = window.showPage;
+
+window.showPage = function(page) {
+  if (originalShowPage) originalShowPage(page);
+  setActiveNav(page);
+};
+
+/* Highlight correct tab on load */
+window.addEventListener("load", () => {
+  const hash = location.hash.replace("#", "") || "home";
+  setActiveNav(hash);
+});
+</script>
 
 </body>
 </html>
+
 
 
 

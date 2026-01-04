@@ -552,10 +552,27 @@
   }
 
   document.addEventListener("DOMContentLoaded", loadJobs);
+
+await fetch("https://civilbench.com/api/admin-delete-job", {
+  method: "DELETE",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    jobId: jobIdInput,
+    adminKey: adminSecretInput
+  })
+});
+
+
+
+
+  
 </script>
 
 </body>
 </html>
+
 
 
 

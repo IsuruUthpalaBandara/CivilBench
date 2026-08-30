@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CivilBench</title>
+<meta name="description" content="CivilBench is a free civil engineering platform for managing construction site activities, including daily site records, reports, documentation, and engineering tools.">
+<meta name="keywords" content="civil engineering, construction site management, daily site record, site diary, construction reports, civil engineering tools, CivilBench">
+<meta property="og:title" content="CivilBench – Free Civil Engineering Construction Management Platform">
+<meta property="og:description" content="A free civil engineering platform to manage construction site activities, daily site records, reports, and documentation.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://civilbench.com/">
+<title>CivilBench – Free Civil Engineering Construction Management Platform</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <style>
@@ -14,7 +20,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:#f2f4f7;color:#222;paddin
 form{padding:20px}.section{margin-bottom:24px}.section-title{font-size:15px;font-weight:bold;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #ddd}
 label{display:block;font-size:13px;font-weight:bold;margin-bottom:6px}
 input[type=text],input[type=email],input[type=date],input[type=number],textarea{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;font-size:15px;outline:none;background:#fff}
-input:focus,textarea:focus{border-color:#555}.textarea{min-height:100px;resize:vertical}.field{margin-bottom:16px}.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.photo-card img{width:100%;height:150px;object-fit:cover;border-radius:8px;border:1px solid #ddd}.photo-card{position:relative}.photo-remove{position:absolute;right:5px;top:5px;border-radius:50%;padding:4px 8px;background:#222;color:#fff;font-size:12px}.drive-note{display:block;margin-top:6px;color:#777;font-size:12px;line-height:1.4}
+input:focus,textarea:focus{border-color:#555}.textarea{min-height:100px;resize:vertical}.field{margin-bottom:16px}.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.photo-card img{width:100%;height:150px;object-fit:cover;border-radius:8px;border:1px solid #ddd}.photo-card{position:relative}.photo-remove{position:absolute;right:5px;top:5px;border-radius:50%;padding:4px 8px;background:#222;color:#fff;font-size:12px}
 .options{display:grid;gap:8px}.option,.weather-option{position:relative}.option input,.weather-option input{position:absolute;opacity:0}
 .option label{display:flex;align-items:center;padding:12px;border:1px solid #ddd;border-radius:8px;background:#fafafa;cursor:pointer;font-weight:normal;margin:0}
 .option label::before{content:"";width:18px;height:18px;border:2px solid #aaa;border-radius:50%;margin-right:10px;flex-shrink:0}
@@ -34,7 +40,7 @@ button{border:none;border-radius:8px;padding:13px;font-size:15px;font-weight:bol
 </head>
 <body>
 <div class="app">
-<div class="header"><h1>CivilBench</h1><p>Daily site activity record</p></div>
+<div class="header"><h1>CivilBench</h1><p>Free civil engineering platform to manage construction site activities</p></div>
 <form id="siteForm">
 <div class="section">
 <div class="section-title">Site Information</div>
@@ -46,15 +52,6 @@ button{border:none;border-radius:8px;padding:13px;font-size:15px;font-weight:bol
 <div class="section-title">Recorder Information</div>
 <div class="field"><label for="recorderName">Recorder's Name</label><input type="text" id="recorderName" placeholder="Enter recorder's name" autocomplete="name"></div>
 <div class="field"><label for="recorderDesignation">Designation</label><input type="text" id="recorderDesignation" placeholder="e.g. Consultant Site Engineer"></div>
-</div>
-
-<div class="section">
-<div class="section-title">Google Drive Delivery</div>
-<div class="field">
-<label for="email">Google Account Email</label>
-<input type="email" id="email" placeholder="yourname@gmail.com" autocomplete="email">
-<small class="drive-note">The PDF can be sent to a Google Drive folder named <b>CivilBench</b> after you connect the app to Google. An email address alone cannot give this HTML file permission to write to that Drive.</small>
-</div>
 </div>
 <div class="section">
 <div class="section-title">Daily Description</div>
@@ -173,7 +170,7 @@ photoInput.addEventListener("change",function(){
   });
 });
 
-const savedFields=["recorderName","recorderDesignation","email"];
+const savedFields=["recorderName","recorderDesignation"];
 savedFields.forEach(id=>{
   const el=document.getElementById(id);
   const key="civilbench_"+id;
@@ -201,7 +198,6 @@ function collectSiteLog(){
     location:document.getElementById("location").value,
     recorderName:document.getElementById("recorderName").value,
     recorderDesignation:document.getElementById("recorderDesignation").value,
-    email:document.getElementById("email").value,
     description:document.getElementById("description").value,
     status:document.querySelector('input[name="status"]:checked')?.value||"",
     remarks:document.getElementById("remarks").value,
@@ -234,7 +230,7 @@ async function downloadPdf(log){
   const lineHeight=7;
 
   doc.setFontSize(18);
-  doc.text("CivilBench - Daily Site Activity Record",margin,y);
+  doc.text("CivilBench - Site Record",margin,y);
   y+=12;
   doc.setFontSize(10);
 
@@ -254,7 +250,6 @@ async function downloadPdf(log){
   addField("Location",log.location);
   addField("Recorder",log.recorderName);
   addField("Designation",log.recorderDesignation);
-  addField("Email",log.email);
   addField("RFI No.",log.rfiNo);
   addField("Description",log.description);
   addField("Status",log.status);
@@ -286,7 +281,7 @@ async function downloadPdf(log){
 
 function downloadExcel(log){
   const rows=[
-    ["CivilBench - Daily Site Activity Record",""],
+    ["CivilBench - Site Record",""],
     ["Date",log.date],
     ["Time",log.time],
     ["Location",log.location],
